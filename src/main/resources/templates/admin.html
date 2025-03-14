@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <table border="1">
+        <caption> Таблица всех пользователей</caption>
+        <th:block th:each="msg : ${allUsers}">
+            <tr>
+                <td>
+                    <h3 th:text="${msg}"></h3>
+<!--                    <center><a th:href="@{/updateUser(id=${msg.getId()})}" th:text="UPDATE"> user </a>-->
+<!--                        <a th:href="@{/deleteUser(id=${msg.getId()})}" th:text="DELETE"> user </a>-->
+<!--                    </center>-->
+                </td>
+            <tr>
+        </th:block>
+    </table>
+    <br>
+    <br>
+    <input type="button" value="ADD" onclick="window.location.href = 'addNewUser'"/>
+
+</center>
+</body>
+</html>
