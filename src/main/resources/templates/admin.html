@@ -12,16 +12,17 @@
             <tr>
                 <td>
                     <h3 th:text="${msg}"></h3>
-<!--                    <center><a th:href="@{/updateUser(id=${msg.getId()})}" th:text="UPDATE"> user </a>-->
-<!--                        <a th:href="@{/deleteUser(id=${msg.getId()})}" th:text="DELETE"> user </a>-->
-<!--                    </center>-->
+                    <center><a th:href="@{/admin/updateUser(username=${msg.username})}" th:text="UPDATE"> user </a>
+                        <a th:href="@{/admin/deleteUser(id=${msg.getId()})}" th:text="DELETE"> user </a>
+                    </center>
                 </td>
             <tr>
         </th:block>
     </table>
     <br>
     <br>
-    <input type="button" value="ADD" onclick="window.location.href = 'addNewUser'"/>
+    <input type="button" value="LOGOUT" onclick="window.location.href = '/login'">
+    <input type="button" value="ADD" onclick="window.location.href = '/admin/addNewUser'"/>
 
 </center>
 </body>
