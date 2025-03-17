@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 
 <center>
-  <h1> Добавление человека в таблицу </h1>
-  <br>
-  <form th:action="@{/admin/saveUsers}" method="post" th:object="${save}">
-    <label for="username">Username:</label>
-    <input type="text" id="username" th:field="*{username}" required>
-    <br><br>
-    <label for="password">Password:</label>
-    <input type="text" id="password" th:field="*{password}" required>
-    <br><br>
-    <label>Roles:
-      <input type="checkbox" name="roles"
-             th:each="role : ${roles}"
-             th:text="${role.name}"
-             th:value="${role.id}"
-             th:field="*{roles}"
-      />
-    </label>
-    <br><br>
-    <input type="submit" value="ADD USER">
-  </form>
-  <input type="button" value="LOGOUT" onclick="window.location.href = '/login'">
+    <h1> Добавление человека в таблицу </h1>
+    <br>
+    <form th:action="@{/admin/saveUsers}" method="post" th:object="${save}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="text" id="password" th:field="*{password}" required>
+        <br><br>
+        <label>Roles:
+            <input type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:text="${role.name}"
+                   th:value="${role.id}"
+                   th:field="*{roles}"
+            />
+        </label>
+        <br><br>
+        <input type="submit" value="ADD USER">
+    </form>
+    <input type="button" value="LOGOUT" onclick="window.location.href = '/login'">
 </center>
 </body>
 </html>

@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService service;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler,@Lazy UserService service) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, @Lazy UserService service) {
         this.successUserHandler = successUserHandler;
         this.service = service;
 
@@ -39,15 +39,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
-       return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(service).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(service).passwordEncoder(passwordEncoder());
     }
 
 }

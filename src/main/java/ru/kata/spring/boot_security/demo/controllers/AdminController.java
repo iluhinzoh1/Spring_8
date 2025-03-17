@@ -16,7 +16,6 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,12 +39,14 @@ public class AdminController {
         model.addAttribute("allUsers", user);
         return "admin";
     }
+
     @GetMapping("addNewUser")
     public String saveUser(Model model) {
         model.addAttribute("save", new User());
         model.addAttribute("roles", roleRepository.findAll());
         return "user-info";
     }
+
     @PostMapping("/saveUsers")
     public String saveUser(@ModelAttribute("save") User user) {
         userService.saveUser(user);
@@ -74,15 +75,14 @@ public class AdminController {
         userService.updateUser(existingUser);
 
         if (principal.getName().equals(existingUser.getUsername())) {
-            // Если да, обновляем аутентификацию
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                     existingUser, existingUser.getPassword(), existingUser.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         if (existingUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))) {
-            return "redirect:/admin"; // Если есть роль ADMIN, перенаправляем на /admin
-        } else if (existingUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_USER"))){
-            return "redirect:/user"; // Если нет роли ADMIN, перенаправляем на /user
+            return "redirect:/admin";
+        } else if (existingUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_USER"))) {
+            return "redirect:/user";
         } else {
             return "redirect:/login";
         }
