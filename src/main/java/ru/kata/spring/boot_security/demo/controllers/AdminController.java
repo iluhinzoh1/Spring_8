@@ -69,6 +69,9 @@ public class AdminController {
                     existingUser, existingUser.getPassword(), existingUser.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+        if (!principal.getName().equals(existingUser.getUsername())) {
+            return "redirect:/admin";
+        }
         if (existingUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"))) {
             return "redirect:/admin";
         } else if (existingUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_USER"))) {
